@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ComparedList {
-
+// Вспомогательный класс, объединяет для компаратора массив данных и индекс колонки
  List<String> comparedList = new ArrayList<String>();
 
 int columnIndex;
