@@ -4,15 +4,15 @@ import java.lang.StringBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//Вспомогательный класс для проверки строк, ячеек, колонок
+//Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РїСЂРѕРІРµСЂРєРё СЃС‚СЂРѕРє, СЏС‡РµРµРє, РєРѕР»РѕРЅРѕРє
 public class StringAnalyzer {
 	
 	public boolean[] AnFirst (String ob) {
 		
 		/* index:
 		 * 0. null
-		 * 1. Пустые
-		 * 2. Есть цифры */
+		 * 1. РџСѓСЃС‚С‹Рµ
+		 * 2. Р•СЃС‚СЊ С†РёС„СЂС‹ */
 		
 		boolean[] anRes = {false, false, false};
 		
@@ -36,7 +36,7 @@ public class StringAnalyzer {
 	
 	public boolean IsCharDigit (char a) {
 		
-		// Проверяем отдельный символ. Метод добавлен в созданный нами класс для удобства
+		// РџСЂРѕРІРµСЂСЏРµРј РѕС‚РґРµР»СЊРЅС‹Р№ СЃРёРјРІРѕР». РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅ РІ СЃРѕР·РґР°РЅРЅС‹Р№ РЅР°РјРё РєР»Р°СЃСЃ РґР»СЏ СѓРґРѕР±СЃС‚РІР°
 		
 		boolean prov = false;		
 		if (Character.isDigit(a)) 
@@ -46,7 +46,7 @@ public class StringAnalyzer {
 	}
 	
 	public String SelectDigits (String ob) {
-		// Запасной метод
+		// Р—Р°РїР°СЃРЅРѕР№ РјРµС‚РѕРґ
 		StringBuffer resob = new StringBuffer("");
 		
 		for (int i = 0; i < ob.length(); i++) {
@@ -60,8 +60,8 @@ public class StringAnalyzer {
 	
 	public int SelectLargestDigit (String ob) {
 		
-		//Сортировка ведется по большему значению, поскольку больший порядок (больше цифр) 
-		//априори означает большее значение, но устраняется проблема равного количества цифр
+	        //РЎРѕСЂС‚РёСЂРѕРІРєР° РІРµРґРµС‚СЃСЏ РїРѕ Р±РѕР»СЊС€РµРјСѓ Р·РЅР°С‡РµРЅРёСЋ, РїРѕСЃРєРѕР»СЊРєСѓ Р±РѕР»СЊС€РёР№ РїРѕСЂСЏРґРѕРє (Р±РѕР»СЊС€Рµ С†РёС„СЂ) 
+		//Р°РїСЂРёРѕСЂРё РѕР·РЅР°С‡Р°РµС‚ Р±РѕР»СЊС€РµРµ Р·РЅР°С‡РµРЅРёРµ, РЅРѕ СѓСЃС‚СЂР°РЅСЏРµС‚СЃСЏ РїСЂРѕР±Р»РµРјР° СЂР°РІРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° С†РёС„СЂ
 		
 		StringBuffer resours = new StringBuffer("");
 		int obr = 0;
