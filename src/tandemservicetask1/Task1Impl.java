@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * <h1>Задание №1</h1>
@@ -45,10 +49,8 @@ public class Task1Impl implements IStringRowsListSorter {
  			   }
  			  System.out.println("Added null: " + newRow);
  			 sortedRow.add(newRow);
-
  		   }
- 		   
- 		   
+ 		    		   
 		   System.out.println(rows.get(columnIndex)[k]);
 		   
 	   }
@@ -63,10 +65,7 @@ public class Task1Impl implements IStringRowsListSorter {
  			  System.out.println("Added empty: " + newRow);
  			 sortedRow.add(newRow);
 
- 		   }
- 		   
- 		   
-		   System.out.println(rows.get(columnIndex)[k]);
+ 		   } 		    		  
 		   
 	   }
  	   
@@ -74,81 +73,40 @@ public class Task1Impl implements IStringRowsListSorter {
 int firstPart = sortedRow.size();
 for (int i = 0; i<firstPart;i++) {  
 	 System.out.println(sortedRow.get(i));}
-
-
-
  	   
  	   //!!! Добавляем ячейки с цифрами
-try {
- 	  List<Integer> digitAdapter = new ArrayList<>();
- 	   for (int u = 0; u < lg; u++) {
- 
- 		   if (an.AnFirst(rows.get(columnIndex)[u])[2]) {
- 			   String d = "";
- 			   //Массив последовательностей цифр в одной ячейке
- 			  List<Integer> currentDigits = new ArrayList<>();
- 			   for (int h = 0; h < rows.get(columnIndex)[u].length(); h++) {
- 				  
- 				   if(an.IsCharDigit(rows.get(columnIndex)[u].charAt(h))) {
- 					   //Ищем максимальное количество по длине, собираем в массив последовательности цифр из ячейки
- 					   String num = "";
- 					   while(an.IsCharDigit(rows.get(columnIndex)[u].charAt(h))) {
- 					   num = num + (rows.get(columnIndex)[u].charAt(h));
- 					   }
- 					  currentDigits.add(Integer.parseInt (num));
- 					 num = "";
- 				   }
- 				   
- 			   }
- 			  digitAdapter.add(Collections.max(currentDigits));
- 			 currentDigits.clear();
- 		   }
-		   
-	   }
-	   //Сортируем ифровые ячейки
- 	  Collections.sort(digitAdapter);
-		  for (int k = 0; k < digitAdapter.size(); k++) {
-			
-			  for (int g = 0; g < lg; g++) {
-				  //Ищем строку с таким же значением, проверяем, что нет совпадений
-				  if (rows.get(columnIndex)[g].contains(String.valueOf(digitAdapter.get(k)))) {
-					//Убеждаемся, что нашли максимальное значение - запускаем цикл повторно
-		 			  List<Integer> currentDigits = new ArrayList<>();
-		 			   for (int h = 0; h < rows.get(columnIndex)[g].length(); h++) {
-		 				  
-		 				   if(an.IsCharDigit(rows.get(columnIndex)[g].charAt(h))) {
-		 				
-		 					   String num = "";
-		 					   while(an.IsCharDigit(rows.get(columnIndex)[g].charAt(h))) {
-		 					   num = num + (rows.get(columnIndex)[g].charAt(h));
-		 					   }
-		 					  currentDigits.add(Integer.parseInt (num));
-		 					 num = "";
-		 				   }
-		 				   
-		 			   }
-		 			  int check = Collections.max(currentDigits);
-		  			 currentDigits.clear();
-		 			   if (digitAdapter.get(k) == check) {
-		 				  List<String> newRow = new ArrayList<>();
-		 	 			   for (int j = 0; j<rows.size(); j++ ) {
-		 	 				  newRow.add(rows.get(j)[g]);  
-		 	 			   }
-		 	 			   //Добавление последовательно, в случае полного совпадения порядок не изменится
-		 	 			   
-		 	 			 sortedRow.add(newRow);
-		 	 			newRow.clear();
-		 				  break;
-		 			   }
-					  
-				
-				  }
-			  }
+			 try { 
+				 
+				 List<ComparedList> digitAdapter = new ArrayList(); 
+				 TreeMap<Integer, List<String>> collection = new TreeMap<>();
+			 for (int u = 0; u < lg; u++) {
+			 
+			  if (an.AnFirst(rows.get(columnIndex)[u])[2]) { 
+	
+			  //Массив  последовательностей цифр в одной ячейке 
+				  List<String> newRow = new ArrayList<>();
+	 			   for (int j = 0; j<rows.size(); j++ ) {
+	 				  newRow.add(rows.get(j)[u]);  
+	 			   }
+	 			  ComparedList cList = new ComparedList();
+	 			cList.setComparedList(newRow);
+	 			cList.setColumnIndex(columnIndex);
+	 			  digitAdapter.add(cList);
 
-		  }
-} catch (Exception e) {
-	System.out.println(e);
-}
+			  }		  
+ }			  		 
+
+            Collections.sort(digitAdapter, new DigitComparator());
+		
+ 			for (int f = 0; f < digitAdapter.size(); f++ ) {
+			sortedRow.add(digitAdapter.get(f).getComparedList());
+ 			}
+			digitAdapter.clear();
+			 
+	 } catch (Exception e) { 
+			 System.out.println(e); 
+		 }
+		
 		  //Добавляем ячейки без цифр. Сохраняем исходную последовательность
 	 	   for (int k = 0; k < lg; k++) {
 	 		   if (!an.AnFirst(rows.get(columnIndex)[k])[0] &&
@@ -159,20 +117,14 @@ try {
 	 				  newRow.add(rows.get(j)[k]);  
 	 			   }
 	 			 sortedRow.add(newRow);
-
 	 		   }
-
 			   
 		   }
-		  
-    	
-    	
+		    	
     	//Читаем итоговый массив - 2 часть
 
 for (int i = firstPart; i<sortedRow.size();i++) {  
 	 System.out.println(sortedRow.get(i));}
-
-
     		
 			sortedRow.clear();
     		
@@ -181,7 +133,6 @@ for (int i = firstPart; i<sortedRow.size();i++) {
     		System.out.println("Operation not completed, may be too large column index: " + e);
 		} 
 			 catch (Exception e) { System.out.println(e); }
-			
-   
+			   
     }
 }

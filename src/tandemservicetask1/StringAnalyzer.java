@@ -1,5 +1,8 @@
 package tandemservicetask1;
 
+import java.lang.StringBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
 
 //Вспомогательный класс для проверки строк, ячеек, колонок
 public class StringAnalyzer {
@@ -20,38 +23,8 @@ public class StringAnalyzer {
 		} else {
 			for (int r = 0; r < ob.length(); r++) {
 				
-				switch (ob.charAt(r)) {
-				case '0':
+				if (Character.isDigit(ob.charAt(r))) {
 					anRes[2] = true;
-					break;
-				case '1':
-					anRes[2] = true;
-					break;
-				case '2':
-					anRes[2] = true;
-					break;
-				case '3':
-					anRes[2] = true;
-					break;
-				case '4':
-					anRes[2] = true;
-					break;
-				case '5':
-					anRes[2] = true;
-				case '6':
-					anRes[2] = true;
-					break;
-				case '7':
-					anRes[2] = true;
-					break;
-				case '8':
-					anRes[2] = true;
-					break;
-				case '9':
-					anRes[2] = true;
-					break;
-				 default: 
-					 anRes[2] = false;
 					 break;}
 				
 			}
@@ -63,47 +36,61 @@ public class StringAnalyzer {
 	
 	public boolean IsCharDigit (char a) {
 		
-		// Проверяем отдельный символ. Метод применим на любом этапе при анализе отдельной ячейки.
+		// Проверяем отдельный символ. Метод добавлен в созданный нами класс для удобства
 		
-		boolean prov = false;
-		
-		switch (a) {
-		case '0':
+		boolean prov = false;		
+		if (Character.isDigit(a)) 
 			prov = true;
-			break;
-		case '1':
-			prov = true;
-			break;
-		case '2':
-			prov = true;
-			break;
-		case '3':
-			prov = true;
-			break;
-		case '4':
-			prov = true;
-			break;
-		case '5':
-			prov = true;
-		case '6':
-			prov = true;
-			break;
-		case '7':
-			prov = true;
-			break;
-		case '8':
-			prov = true;
-			break;
-		case '9':
-			prov = true;
-			break;
-		 default: 
-			 prov = false;
-			 break;}
-		
 		
 		return prov;
 	}
+	
+	public String SelectDigits (String ob) {
+		// Запасной метод
+		StringBuffer resob = new StringBuffer("");
+		
+		for (int i = 0; i < ob.length(); i++) {
+			if (Character.isDigit(ob.charAt(i))) {
+				resob.append(ob.charAt(i));
+			}
+		}
+		
+		return resob.toString();
+	}
+	
+	public int SelectLargestDigit (String ob) {
+		
+		//Сортировка ведется по большему значению, поскольку больший порядок (больше цифр) 
+		//априори означает большее значение, но устраняется проблема равного количества цифр
+		
+		StringBuffer resours = new StringBuffer("");
+		int obr = 0;
+		ArrayList<Integer> digitArray = new ArrayList<>();
+		
+		for (int i = 0; i < ob.length(); i++) {
+			if (Character.isDigit(ob.charAt(i))) {
+				int k = i;
+				while(Character.isDigit(ob.charAt(k))) {
+				resours.append(ob.charAt(k));
+				if (k < (ob.length()-1)) {
+				k++;
+				} else {
+					break;
+				}
+				}
+				digitArray.add(Integer.parseInt(resours.toString()));
+				resours.setLength(0);			
+					i = k;
+
+			}
+		}
+		if (digitArray.size()> 0) {
+		obr = Collections.max(digitArray);
+		}
+				
+		return obr;
+	}
+	
 	
 	
 	}
