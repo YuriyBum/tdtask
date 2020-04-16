@@ -6,14 +6,14 @@ import java.util.List;
 public class tdstask1 {
 	
 	
-	//Вспомогательный класс для проверки реализации с тестовыми входными данными
+	//Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РїСЂРѕРІРµСЂРєРё СЂРµР°Р»РёР·Р°С†РёРё СЃ С‚РµСЃС‚РѕРІС‹РјРё РІС…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё
 	
 	public static void main(String[] args) {
 		
 			StringAnalyzer an = new StringAnalyzer();
 			
 		Task1Impl task = new Task1Impl();
-		//Тестовый входной надор данных
+		//РўРµСЃС‚РѕРІС‹Р№ РІС…РѕРґРЅРѕР№ РЅР°РґРѕСЂ РґР°РЅРЅС‹С…
 		List<String[]> testList = new ArrayList<String[]>();
 		
 		
