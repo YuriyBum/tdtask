@@ -57,12 +57,16 @@ public class tdstask1 {
 		task.sort(testList, 4);
 		
 	//Проверяем геттер
+		try {
 		 for (int i = 0; i<task.getSortedRows().size(); i++) { for (int j = 0;
 		 j<task.getSortedRows().get(i).length; j++) {
 		 System.out.print(task.getSortedRows().get(i)[j] + ", "); 
 		 } 
 		 System.out.println("\n");
 		 }
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	//роверка разделителя	 
 		 
 		 System.out.println(an.SplittedString("8 Мой дядя самый честный 4652 года выпуска плавал 34 раза 7 раз тонул 12 раз спасся. 6152 дня бегал 7583 дня летал"));
