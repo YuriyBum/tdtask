@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.istack.internal.NotNull;
+
 //<h2>Вспомогательный класс для проверки строк, ячеек, колонок</h2>
 public class StringAnalyzer {
 	
@@ -63,7 +65,7 @@ public class StringAnalyzer {
 	}
 	
 	public String SelectDigits (String ob) {
-		// <p>Сбор цифр из строки, возвращает String
+		// <p>Сбор цифр из строки, возвращает String</p>
 		StringBuffer resob = new StringBuffer("");
 		
 		for (int i = 0; i < ob.length(); i++) {
@@ -73,6 +75,21 @@ public class StringAnalyzer {
 		}
 		
 		return resob.toString();
+	}
+	
+	public int TotalLargestDigit(String[] ob) {
+		/*
+		 * <p>Для корректной работы основного компаратора {@link: DigitComparator} важно</p>
+		 * <p>знать максимально возможное число, с каким он может столкнуться. Для этого</p>
+		 * <p>используется TotalLargestDigit, возвращает int</p>
+		 */
+		int a = 0;
+		List<Integer> dList = new ArrayList();
+		for (int i = 0; i < ob.length; i++) {
+			dList.add(this.SelectLargestDigit(ob[i]));
+		}
+		a = Collections.max(dList);
+		return a;
 	}
 	
 	public int SelectLargestDigit (String ob) {
@@ -86,8 +103,8 @@ public class StringAnalyzer {
 		int obr = 0;
 		ArrayList<Integer> digitArray = new ArrayList<>();
 		
-		for (int i = 0; i < ob.length(); i++) {
-			if (Character.isDigit(ob.charAt(i))) {
+		for (int i = 0; i < String.valueOf(ob).length(); i++) {
+			if (Character.isDigit(String.valueOf(ob).charAt(i))) {
 				int k = i;
 				while(Character.isDigit(ob.charAt(k))) {
 				resours.append(ob.charAt(k));
@@ -194,3 +211,4 @@ public class StringAnalyzer {
 
 
 }	
+
