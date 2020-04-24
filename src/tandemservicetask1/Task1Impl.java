@@ -27,11 +27,15 @@ public class Task1Impl implements IStringRowsListSorter {
     public void sort(final List<String[]> rows, final int columnIndex) {
     	
     	 // <p>Напишите здесь свою реализацию. Мы ждем от вас хорошо структурированного, документированного и понятного кода.</p>
-    	 // <p>Реализация не работает корректно с десятичными дробями, только с последовательностями цифр. Значение "." это не цифра!</p>
-    	 // <p>Первичный анализатор - вынесен в отдельный класс {@link StringAnalyzer}</p>
+    	 // <p>Реализация риводится ниже.</p>
+    	 // <p>Библиотека методов анализа вынесена в отдельный класс {@link StringAnalyzer}</p>
     	 // <p>Главный сортировщик строк применяется для строк из букв и цифр {@link DigitComparator}</p>
     	 // <p>Для проверки используется класс {@link tdtask1}</p>
     	StringAnalyzer an = new StringAnalyzer();
+    	int lg = rows.get(columnIndex).length;
+    	int lDigit = an.TotalLargestDigit(rows.get(columnIndex));
+			System.out.println("Largest digit: " + lDigit);
+
     	try {
     		//<p>Преобразуем массив в более мобильный</p>
     		
@@ -39,9 +43,7 @@ public class Task1Impl implements IStringRowsListSorter {
     	    // важно не перезаписать исходник</p>
     		
     		List<List<String>> sortedRow = new ArrayList<List<String>>();
-    		int lg = rows.get(columnIndex).length;
-
-    	
+    		    		
     			// <p>добавляем ячейки с null. Добавление последовательно, что позволяет
     			// сохранить порядок сортировки</p>
  	   for (int k = 0; k < lg; k++) {
@@ -96,6 +98,7 @@ for (int i = 0; i<firstPart;i++) {
 	 			  ComparedList cList = new ComparedList();
 	 			cList.setComparedList(newRow);
 	 			cList.setColumnIndex(columnIndex);
+	 			cList.setLargestDigit(lDigit);
 	 			  digitAdapter.add(cList);
 
 			  }		  
@@ -128,7 +131,8 @@ for (int i = 0; i<firstPart;i++) {
 			 			   }
 			 			  ComparedList cList = new ComparedList();
 			 			cList.setComparedList(newRow);
-			 			cList.setColumnIndex(columnIndex);
+			 			cList.setColumnIndex(columnIndex);	 			
+			 			cList.setLargestDigit(lDigit);
 			 			  digitAdapter.add(cList);
 
 					  }		  
@@ -191,7 +195,7 @@ this.theSortedRow = thSortedRow;
 			   
     }
     // <p>Добавляем метод, возвращающий результат сортировки. 
-    //Вызов метода должен быть заключен в попытку на случай, если сортировка не осуществлялась ранее.</p>
+    //Вызов метода рекомендуется заключать в попытку на случай, если сортировка не осуществлялась ранее.</p>
     public List<String[]> getSortedRows() {
     return theSortedRow;
     }
