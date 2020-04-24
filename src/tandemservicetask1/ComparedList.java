@@ -5,10 +5,17 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ComparedList {
-// Вспомогательный класс, объединяет для компаратора массив данных и индекс колонки
+
+	/*
+	 * Для компаратора нужны сведения: сам массив (строка), индекс колонки и
+	 * наибольшее значение, с каким он может столкнуться
+	 */
+	
  List<String> comparedList = new ArrayList<String>();
 
-int columnIndex;
+ int columnIndex;
+ 
+ int largestDigit;
 
 
 public Integer getColumnIndex() {
@@ -27,7 +34,13 @@ public void setComparedList(List<String> comparedList) {
     this.comparedList = comparedList;
 }
 
+public Integer getLargestDigit() {
+    return largestDigit;
+}
 
+public void setLargestDigit(Integer largestDigit) {
+    this.largestDigit = largestDigit;
+}
 			
 	}
 
