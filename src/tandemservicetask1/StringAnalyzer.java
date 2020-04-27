@@ -80,13 +80,13 @@ public class StringAnalyzer {
 	public int TotalLargestDigit(String[] ob) {
 		/*
 		 * <p>Для корректной работы основного компаратора {@link: DigitComparator} важно</p>
-		 * <p>знать максимально возможное число, с каким он может столкнуться. Для этого</p>
+		 * <p>знать максимально возможное число, с каким он ожет столкнуться. Для этого</p>
 		 * <p>используется TotalLargestDigit, возвращает int</p>
 		 */
 		int a = 0;
 		List<Integer> dList = new ArrayList();
 		for (int i = 0; i < ob.length; i++) {
-			dList.add(this.SelectLargestDigit(ob[i]));
+			dList.add(SelectLargestDigit(ob[i]));
 		}
 		a = Collections.max(dList);
 		return a;
@@ -182,7 +182,7 @@ public class StringAnalyzer {
 
 		  int maxnumbers = 0;
 		  for(int i = 0; i < ob.size(); i++) {
-			  if(this.IsStringDigit(ob.get(i))) {
+			  if(IsStringDigit(ob.get(i))) {
 				  buffer.add(Integer.parseInt(ob.get(i)));
 			  }
 		  }
@@ -192,7 +192,7 @@ public class StringAnalyzer {
 		  } 
 		  
 		  for(int i = 0; i < ob.size(); i++) {
-			  if(!this.IsStringDigit(ob.get(i))) {
+			  if(!IsStringDigit(ob.get(i))) {
 				  combine.append(ob.get(i));
 			  } else if (ob.get(i).length() == maxnumbers) {
 				 if(combine.length()>0) fragments.add(combine.toString());
@@ -211,4 +211,8 @@ public class StringAnalyzer {
 
 
 }	
+	
+
+	
+	
 
